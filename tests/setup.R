@@ -10,6 +10,6 @@ pme_cat <-
 which_records <- sample( seq( nrow( pme_cat ) ) , round( nrow( pme_cat ) * 0.75 ) )
 
 # always sample year == 2016
-pme_cat <- unique( pme_cat[ which_records , ] , subset( pme_cat , year == 2016 ) )
+pme_cat <- unique( rbind( pme_cat[ which_records , ] , subset( pme_cat , year == 2016 ) ) )
 
 lodown( "pme" , pme_cat )
