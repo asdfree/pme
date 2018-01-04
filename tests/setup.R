@@ -8,7 +8,7 @@ pme_cat <-
 	get_catalog( "pme" ,
 		output_dir = file.path( getwd() ) )
 
-record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 8 ) )
+record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 25 ) )
 
 pme_cat <- unique( rbind( pme_cat[ record_categories == this_sample_break , ] , pme_cat[ pme_cat$year == 2016 , ] ) )
 
