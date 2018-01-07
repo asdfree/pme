@@ -3,6 +3,7 @@ if ( .Platform$OS.type == 'windows' ) memory.limit( 256000 )
 library(lodown)
 lodown( "pme" , output_dir = file.path( getwd() ) )
 this_sample_break <- Sys.getenv( "this_sample_break" )
+pme_cat <- get_catalog( "pme" , pme_cat )
 record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 10 ) )
 pme_cat <- pme_cat[ record_categories == this_sample_break , ]
 lodown( "pme" , pme_cat )
