@@ -1,7 +1,5 @@
 if ( .Platform$OS.type == 'windows' ) memory.limit( 256000 )
 
-library(lodown)
-lodown( "pme" , output_dir = file.path( getwd() ) )
 this_sample_break <- Sys.getenv( "this_sample_break" )
 pme_cat <- get_catalog( "pme" , output_dir = file.path( getwd() ) )
 record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 10 ) )
@@ -17,7 +15,7 @@ pme_cat <-
 # 2016 only
 pme_cat <- subset( pme_cat , year == 2016 )
 # download the microdata to your local computer
-lodown( "pme" , pme_cat )
+
 
 options( survey.lonely.psu = "adjust" )
 
