@@ -3,7 +3,7 @@ if ( .Platform$OS.type == 'windows' ) memory.limit( 256000 )
 library(lodown)
 this_sample_break <- Sys.getenv( "this_sample_break" )
 pme_cat <- get_catalog( "pme" , output_dir = file.path( getwd() ) )
-record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 25 ) )
+record_categories <- ceiling( seq( nrow( pme_cat ) ) / ceiling( nrow( pme_cat ) / 24 ) )
 pme_cat <- pme_cat[ record_categories == this_sample_break , ]
 lodown( "pme" , pme_cat )
 if( any( pme_cat$year == 2016 ) ){
