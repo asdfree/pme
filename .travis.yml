@@ -2,16 +2,35 @@
 
 language: r
 cache: packages
-sudo: false
+sudo: required
+apt_packages:
+- unixodbc-dev
+- libarchive-dev
 
-addons:
-  apt:
-    packages:
-       - unixodbc-dev
-       - libarchive-dev
+script: 
+  - |
+    travis_wait 50 R CMD build .
+    travis_wait 50 R CMD check *tar.gz
+
+after_failure:
+- find *Rcheck -name '*.fail' -print -exec cat '{}' \;
+# show memory usage again
+- sudo free -m -t
+# show actions of the OOM killer
+- sudo dmesg
 
 r_github_packages:
  - ajdamico/lodown
+
+
+before_install:
+# shutdown servies on Travis, which may have a memory impact
+# show memory usage before and after shutdown of services
+- sudo service --status-all
+- sudo free -m -t
+- sudo /etc/init.d/mysql stop
+- sudo /etc/init.d/postgresql stop
+- sudo free -m -t
 
 env:
  - this_sample_break=1
@@ -19,5 +38,24 @@ env:
  - this_sample_break=3
  - this_sample_break=4
  - this_sample_break=5
+ - this_sample_break=6
+ - this_sample_break=7
+ - this_sample_break=8
+ - this_sample_break=9
+ - this_sample_break=10
+ - this_sample_break=11
+ - this_sample_break=12
+ - this_sample_break=13
+ - this_sample_break=14
+ - this_sample_break=15
+ - this_sample_break=16
+ - this_sample_break=17
+ - this_sample_break=18
+ - this_sample_break=19
+ - this_sample_break=20
+ - this_sample_break=21
+ - this_sample_break=22
+ - this_sample_break=23
+ - this_sample_break=24
 matrix:
     fast_finish: true
